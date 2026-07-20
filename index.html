@@ -14,14 +14,12 @@
     <style>
         body {
             font-family: 'Lora', serif;
-            /* Deep space to midnight blue radial gradient */
             background: radial-gradient(circle at center top, #0a192f 0%, #020617 100%);
-            color: #f1f5f9; /* Solid, crisp ice-white for readability */
+            color: #f1f5f9; 
         }
         h1, h2, h3, .magic-font {
             font-family: 'Cinzel', serif;
         }
-        /* Electrifying Neon Blue Text Effect */
         .neon-blue-text {
             color: #7dd3fc;
             text-shadow: 0 0 8px rgba(56, 189, 248, 0.8), 0 0 20px rgba(56, 189, 248, 0.6), 0 0 40px rgba(2, 132, 199, 0.8);
@@ -29,8 +27,23 @@
         .mystic-card {
             background: rgba(15, 23, 42, 0.6);
             backdrop-filter: blur(12px);
-            border: 1px solid rgba(56, 189, 248, 0.3); /* Neon cyan border */
+            border: 1px solid rgba(56, 189, 248, 0.3); 
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5), inset 0 0 15px rgba(56, 189, 248, 0.05);
+        }
+        
+        /* Carousel Custom Logic */
+        .carousel-slide {
+            transition: opacity 0.8s ease-in-out;
+        }
+        .slide-active {
+            opacity: 1;
+            z-index: 10;
+            pointer-events: auto;
+        }
+        .slide-hidden {
+            opacity: 0;
+            z-index: 0;
+            pointer-events: none;
         }
     </style>
 </head>
@@ -38,14 +51,10 @@
 
     <!-- Hero Section -->
     <header class="relative pt-20 pb-16 text-center px-4">
-        
-        <!-- Logo Container -->
         <div class="mx-auto w-48 h-48 rounded-full border-2 border-cyan-400/80 shadow-[0_0_30px_rgba(56,189,248,0.6)] flex items-center justify-center bg-slate-900 mb-8 overflow-hidden relative">
             <div class="absolute inset-0 bg-gradient-to-tr from-cyan-600/30 via-blue-600/30 to-sky-400/30 z-0"></div>
-            <!-- logo.png asset linkage -->
             <img src="logo.png" alt="Jay.vision Tarot Logo" class="w-full h-full object-cover z-10">
         </div>
-
         <h1 class="text-5xl md:text-7xl font-bold mb-4 tracking-wider neon-blue-text">Jay.vision Tarot</h1>
         <p class="text-xl md:text-2xl text-cyan-100 magic-font max-w-2xl mx-auto drop-shadow-md">Unveiling the currents of your fate.</p>
     </header>
@@ -66,17 +75,14 @@
     <!-- Services Section -->
     <section class="max-w-6xl mx-auto px-4 py-12">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <!-- Service 1 -->
             <div class="mystic-card rounded-xl p-8 text-center transition hover:-translate-y-2 duration-300 border-t-4 border-t-cyan-300">
                 <h3 class="text-2xl font-bold mb-4 magic-font text-cyan-200">Tarot Readings</h3>
                 <p class="text-slate-300">Using the Major and Minor Arcana to unveil the currents shaping your present and future. Honest, direct, and illuminating.</p>
             </div>
-            <!-- Service 2 -->
             <div class="mystic-card rounded-xl p-8 text-center transition hover:-translate-y-2 duration-300 border-t-4 border-t-blue-400">
                 <h3 class="text-2xl font-bold mb-4 magic-font text-blue-300">Intuitive Advice</h3>
                 <p class="text-slate-300">An outside-the-box approach to life's crossroads. Receive grounded, empathetic counsel drawn from deep spiritual intuition.</p>
             </div>
-            <!-- Service 3 -->
             <div class="mystic-card rounded-xl p-8 text-center transition hover:-translate-y-2 duration-300 border-t-4 border-t-sky-400">
                 <h3 class="text-2xl font-bold mb-4 magic-font text-sky-300">Deep Vision</h3>
                 <p class="text-slate-300">A profound exploration into your spiritual blockages and energetic alignments. For those ready to look beyond the veil.</p>
@@ -84,49 +90,119 @@
         </div>
     </section>
 
-    <!-- Booking Section (Calendly Integration) -->
+    <!-- Booking Section -->
     <section class="max-w-4xl mx-auto px-4 py-16" id="book">
         <h2 class="text-4xl font-bold text-center mb-8 magic-font text-cyan-100">Schedule Your Reading</h2>
         <div class="mystic-card rounded-2xl p-4 md:p-8">
-            
-            <!-- Calendly inline widget begin -->
             <div class="calendly-inline-widget" data-url="https://calendly.com/jay-vision-tarot" style="min-width:320px;height:700px;"></div>
             <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
-            <!-- Calendly inline widget end -->
-
         </div>
     </section>
 
-    <!-- Reviews Section (Reddit Embed Integration) -->
-    <section class="max-w-4xl mx-auto px-4 py-16" id="reviews">
+    <!-- Reviews Section with Rotating Carousel -->
+    <section class="max-w-3xl mx-auto px-4 py-16" id="reviews">
         <h2 class="text-4xl font-bold text-center mb-8 magic-font text-cyan-100">Client Encounters</h2>
-        <div class="mystic-card rounded-2xl p-6 md:p-8 flex flex-col items-center justify-center min-h-[250px]">
-            
-            <!-- Reddit Native Script Framework -->
-            <div class="w-full overflow-hidden rounded-xl bg-slate-900/50 p-4 border border-cyan-500/10">
-                <blockquote class="reddit-embed-bq" data-embed-height="500" data-embed-theme="dark">
-                    <a href="https://www.reddit.com/user/JaysVision1/submitted/">Jay.Vision Tarot Reviews</a><br> 
-                    by <a href="https://www.reddit.com/user/JaysVision1">u/JaysVision1</a> in <a href="https://www.reddit.com/user/JaysVision1/">u_JaysVision1</a>
-                </blockquote>
-                <script async src="https://embed.reddit.com/widgets.js" charset="UTF-8"></script>
-            </div>
+        
+        <div class="mystic-card rounded-2xl p-6 border border-cyan-500/10">
+            <!-- Carousel Container -->
+            <div class="relative w-full h-[520px] overflow-hidden rounded-xl bg-slate-900/50">
+                
+                <!-- SLIDE 1 -->
+                <div class="carousel-slide slide-active absolute inset-0 w-full h-full p-2 flex justify-center">
+                    <blockquote class="reddit-embed-bq" data-embed-height="500" data-embed-theme="dark">
+                        <a href="https://www.reddit.com/user/JaysVision1/submitted/">Jay.Vision Tarot Reviews</a><br> 
+                        by <a href="https://www.reddit.com/user/JaysVision1">u/JaysVision1</a> in <a href="https://www.reddit.com/user/JaysVision1/">u_JaysVision1</a>
+                    </blockquote>
+                </div>
 
+                <!-- SLIDE 2 -->
+                <div class="carousel-slide slide-hidden absolute inset-0 w-full h-full p-2 flex justify-center">
+                    <blockquote class="reddit-embed-bq" data-embed-height="259">
+<a href="https://www.reddit.com/user/JaysVision1/comments/1uy52hs/comment/oxzwc2w/">Comment</a><br> by
+<a href="https://www.reddit.com/user/JaysVision1/">u/JaysVision1</a> from discussion
+<a href="https://www.reddit.com/user/JaysVision1/comments/1uy52hs/jayvision_tarot_reviews/"></a><br> in
+<a href="https://www.reddit.com/user/JaysVision1/">u_JaysVision1</a>
+</blockquote><script async="" src="https://embed.reddit.com/widgets.js" charset="UTF-8"></script>    
+               
+                </div>
+
+                <!-- SLIDE 3 -->
+                <div class="carousel-slide slide-hidden absolute inset-0 w-full h-full p-2 flex justify-center">
+                    
+                    <!-- [PASTE REDDIT EMBED #3 HERE - OVERWRITING THIS COMMENT] -->
+                    
+                </div>
+
+            </div>
+            
+            <!-- Reddit Master Script (Only needs to load once) -->
+            <script async src="https://embed.reddit.com/widgets.js" charset="UTF-8"></script>
+
+            <!-- Carousel Controls -->
+            <div class="flex justify-center items-center space-x-6 mt-6">
+                <button onclick="changeSlide(-1)" class="text-cyan-500 hover:text-cyan-300 font-bold px-4 py-2 rounded-full border border-cyan-500/30 hover:border-cyan-300 transition-colors">
+                    &#8592; Prev
+                </button>
+                <div class="flex space-x-2" id="carousel-dots">
+                    <!-- Dots will be updated by JS -->
+                    <span class="h-2 w-2 rounded-full bg-cyan-400"></span>
+                    <span class="h-2 w-2 rounded-full bg-slate-600"></span>
+                    <span class="h-2 w-2 rounded-full bg-slate-600"></span>
+                </div>
+                <button onclick="changeSlide(1)" class="text-cyan-500 hover:text-cyan-300 font-bold px-4 py-2 rounded-full border border-cyan-500/30 hover:border-cyan-300 transition-colors">
+                    Next &#8594;
+                </button>
+            </div>
         </div>
     </section>
 
     <!-- Footer & Disclosures -->
     <footer class="text-center py-10 text-slate-400 border-t border-cyan-900/50 mt-12 px-4 bg-[#050f1f]">
         <p class="magic-font text-xl mb-6 text-cyan-200">&copy; 2026 Jay.vision. Embrace the Journey.</p>
-        
         <div class="max-w-3xl mx-auto text-xs md:text-sm text-slate-500 space-y-4 text-justify md:text-center leading-relaxed">
-            <p>
-                <strong class="text-slate-400">For Entertainment Purposes Only:</strong> All tarot readings, deep vision sessions, and intuitive advice provided by Jay.vision are strictly for entertainment purposes. The insights and guidance offered do not constitute and should not be used as a substitute for professional legal, medical, psychological, business, or financial advice. Any decisions made based on a reading are the sole responsibility of the client.
-            </p>
-            <p>
-                <strong class="text-slate-400">Privacy Statement:</strong> Your privacy and energetic boundaries are deeply respected. All sessions, inquiries, and personal information shared with Jay.vision are kept completely confidential. Your data will never be sold, distributed, or compromised.
-            </p>
+            <p><strong class="text-slate-400">For Entertainment Purposes Only:</strong> All tarot readings, deep vision sessions, and intuitive advice provided by Jay.vision are strictly for entertainment purposes. The insights and guidance offered do not constitute and should not be used as a substitute for professional legal, medical, psychological, business, or financial advice. Any decisions made based on a reading are the sole responsibility of the client.</p>
+            <p><strong class="text-slate-400">Privacy Statement:</strong> Your privacy and energetic boundaries are deeply respected. All sessions, inquiries, and personal information shared with Jay.vision are kept completely confidential. Your data will never be sold, distributed, or compromised.</p>
         </div>
     </footer>
 
+    <!-- Carousel Javascript Engine -->
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+        const dots = document.getElementById('carousel-dots').children;
+        let slideInterval;
+
+        function updateSlides() {
+            slides.forEach((slide, index) => {
+                if (index === currentSlide) {
+                    slide.classList.remove('slide-hidden');
+                    slide.classList.add('slide-active');
+                    dots[index].classList.replace('bg-slate-600', 'bg-cyan-400');
+                } else {
+                    slide.classList.remove('slide-active');
+                    slide.classList.add('slide-hidden');
+                    dots[index].classList.replace('bg-cyan-400', 'bg-slate-600');
+                }
+            });
+        }
+
+        function changeSlide(direction) {
+            currentSlide = (currentSlide + direction + slides.length) % slides.length;
+            updateSlides();
+            resetInterval();
+        }
+
+        function nextSlide() {
+            changeSlide(1);
+        }
+
+        function resetInterval() {
+            clearInterval(slideInterval);
+            slideInterval = setInterval(nextSlide, 8000); // Cycles every 8 seconds
+        }
+
+        // Start the automatic rotation
+        resetInterval();
+    </script>
 </body>
 </html>
