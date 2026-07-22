@@ -89,26 +89,50 @@
         </div>
     </section>
 
-    <!-- Reviews Section (Enhanced Reddit Embed Wrapper Integration) -->
-    <section class="max-w-4xl mx-auto px-4 py-16" id="reviews">
-        <h2 class="text-4xl font-bold text-center mb-8 magic-font text-cyan-100">Client Encounters</h2>
-        <div class="mystic-card rounded-2xl p-6 md:p-8 flex flex-col items-center justify-center min-h-[250px]">
+<!-- Submission Form for New Reviews -->
+        <div class="mystic-card rounded-2xl p-8 mt-12 max-w-2xl mx-auto border-t-4 border-t-cyan-400">
+            <h3 class="text-2xl font-bold mb-2 magic-font text-cyan-200 text-center">Share Your Experience</h3>
+            <p class="text-slate-300 text-center mb-6 text-sm">Leave a review of your reading. Your email will remain private and will not be published.</p>
             
-            <!-- Enhanced Outer Wrapper Frame -->
-            <div class="w-full overflow-hidden rounded-2xl bg-slate-950/80 p-4 md:p-6 border-2 border-cyan-400/50 shadow-[0_0_25px_rgba(56,189,248,0.25)] relative">
-                <!-- Subtle internal ambient glow layer -->
-                <div class="absolute inset-0 bg-gradient-to-r from-cyan-500/5 via-transparent to-blue-500/5 pointer-events-none"></div>
-                
-                <blockquote class="reddit-embed-bq" data-embed-height="500" data-embed-theme="dark">
-                    <a href="https://www.reddit.com/user/JaysVision1/submitted/">Jay.Vision Tarot Reviews</a><br> 
-                    by <a href="https://www.reddit.com/user/JaysVision1">u/JaysVision1</a> in <a href="https://www.reddit.com/user/JaysVision1/">u_JaysVision1</a>
-                </blockquote>
-                <script async src="https://embed.reddit.com/widgets.js" charset="UTF-8"></script>
+            <!-- Success/Error Messages (Hidden by default, triggered by Formspree) -->
+            <div data-fs-success style="display: none;" class="p-4 mb-6 bg-cyan-900/50 border border-cyan-400 text-cyan-100 rounded-lg text-center tracking-wide">
+                Thank you! Your review has been received.
+            </div>
+            <div data-fs-error style="display: none;" class="p-4 mb-6 bg-red-900/50 border border-red-400 text-red-200 rounded-lg text-center tracking-wide">
+                There was an error sending your review. Please try again.
             </div>
 
-        </div>
-    </section>
+            <!-- The Form -->
+            <form id="review-form" class="space-y-5">
+                <div>
+                    <label for="name" class="block text-sm font-semibold text-cyan-300 mb-1">Name or Initials</label>
+                    <input type="text" id="name" name="name" required class="w-full bg-slate-950/80 border border-cyan-500/30 rounded-lg p-3 text-slate-100 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition" data-fs-field />
+                </div>
+                
+                <div>
+                    <label for="email" class="block text-sm font-semibold text-cyan-300 mb-1">Email Address</label>
+                    <input type="email" id="email" name="email" required class="w-full bg-slate-950/80 border border-cyan-500/30 rounded-lg p-3 text-slate-100 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition" data-fs-field />
+                    <span data-fs-error="email" class="text-red-400 text-xs mt-1 block"></span>
+                </div>
 
+                <div>
+                    <label for="message" class="block text-sm font-semibold text-cyan-300 mb-1">Your Review</label>
+                    <textarea id="message" name="message" rows="4" required class="w-full bg-slate-950/80 border border-cyan-500/30 rounded-lg p-3 text-slate-100 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition resize-none" data-fs-field></textarea>
+                    <span data-fs-error="message" class="text-red-400 text-xs mt-1 block"></span>
+                </div>
+
+                <button type="submit" class="w-full bg-cyan-900/40 hover:bg-cyan-700/50 text-cyan-200 font-bold py-3 px-4 rounded-lg border border-cyan-500 transition duration-300 magic-font tracking-widest mt-2 cursor-pointer" data-fs-submit-btn>
+                    Submit Review
+                </button>
+            </form>
+        </div>
+
+        <!-- Formspree AJAX Engine -->
+        <script>
+            window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
+            formspree('initForm', { formElement: '#review-form', formId: 'mjgnebpa' });
+        </script>
+        <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
     <!-- Booking Section (Calendly Integration) -->
     <section class="max-w-4xl mx-auto px-4 py-16" id="book">
         <h2 class="text-4xl font-bold text-center mb-8 magic-font text-cyan-100">Schedule Your Reading</h2>
